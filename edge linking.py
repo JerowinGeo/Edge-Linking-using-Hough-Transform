@@ -1,14 +1,16 @@
 # In[ ]:## Read image and convert it to grayscale image
-## Developed by : 
-## Reg no : 
+## Developed by : Jerowin Geo J A
+## Reg no : 212223100016
 import numpy as np
 import cv2
 import matplotlib.pyplot as plt
-#READ THE GRAY IMAGE USING IMREAD 
-#READ THE COLOR IMAGE USING IMREAD
-#CONVERT THE COLOR FROM BGR TO RGB
-#CONVERT THE COLOR FROM GRAY TO RGB
+img=cv2.imread("build.jpeg",0)
+img_c=cv2.imread("build.jpeg",1)
+img_c=cv2.cvtColor(img_c,cv2.COLOR_BGR2RGB)
+
+gray=cv2.cvtColor(img,cv2.COLOR_GRAY2RGB)
 gray = cv2.GaussianBlur(gray,(3,3),0)
+
 plt.figure(figsize=(13,13))
 plt.subplot(1,2,1)
 plt.imshow(img_c)
@@ -20,24 +22,22 @@ plt.title("Gray Image")
 plt.axis("off")
 plt.show()
 
+
+
 canny=cv2.Canny(gray,120,150)
-#DISPLAY THE CANNY IMAGE 
+plt.imshow(canny)
 plt.title("Canny Edge Detector")
 plt.axis("off")
 plt.show()
 
 lines=cv2.HoughLinesP(canny,1,np.pi/180,threshold=80,minLineLength=50,maxLineGap=250)
-
 for line in lines:
     x1,y1,x2,y2=line[0]
     cv2.line(img_c,(x1,y1),(x2,y2),(255,0,0),3)
-
 plt.imshow(img_c)
 plt.title("Result Image")
 plt.axis("off")
 plt.show()
-## Display the result
-## Developed by :
-## Reg no : 
+
 
 
